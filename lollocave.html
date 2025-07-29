@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Accesso protetto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    #link-segreto {
+      display: none;
+      margin-top: 1rem;
+    }
+    #errore {
+      color: red;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Inserisci la password</h2>
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="verificaPassword()">Invia</button>
+  <div id="errore"></div>
+
+  <div id="link-segreto">
+    ✅ Accesso riuscito! Ecco il <a href="https://discord.gg/zwVKsdaZ" target="_blank">link segreto</a>.
+  </div>
+
+  <script>
+    function verificaPassword() {
+      const input = document.getElementById("password").value;
+      const errore = document.getElementById("errore");
+      const link = document.getElementById("link-segreto");
+
+      if (input === "LOLLOCAVERNAXD") {
+        errore.textContent = "";
+        link.style.display = "block";
+      } else {
+        errore.textContent = "Password errata. Riprova.";
+        link.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
