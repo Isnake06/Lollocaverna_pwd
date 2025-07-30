@@ -103,9 +103,21 @@
     let userTriggeredCheating = false;
     let hasAuthenticated = false;
 
-    function checkPassword() {
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
+    async function checkPassword() {
       const input = document.getElementById("password").value;
-      if (input === "LollocavernaXD(tuttomaiuscolo)") {
+      const hashHex = await sha256(input);
+      // hash SHA-256 di "LollocavernaXD(tuttomaiuscolo)"
+      const correctHash = "f62ae7bc5aa812b99767d08ce15372a81c0e99472a240a9a071d3ce4310d26ee";
+
+      if (hashHex === correctHash) {
         hasAuthenticated = true;
 
         if (!userTriggeredCheating) {
