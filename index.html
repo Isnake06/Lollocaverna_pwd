@@ -25,13 +25,8 @@
     #secretLink {
       display: none;
       margin-top: 20px;
-      font-size: 16px;
+      font-size: 18px;
       color: #0f0;
-      word-break: break-all;
-      max-width: 90vw;
-      background: #222;
-      padding: 10px;
-      border-radius: 6px;
     }
 
     .penny-container {
@@ -93,7 +88,9 @@
   <input type="password" id="password" placeholder="Password"/>
   <button onclick="checkPassword()">Accedi</button>
 
-  <div id="secretLink"></div>
+  <div id="secretLink">
+    🔗 <p>Accedi alla Lollocaverna: X9Guc9L9IBZ1p+66NZQPK2QQCNxuXX38LcyHIDHv1J/UBlcwC61HLzkvlP+ZnQ== </p>
+  </div>
 
   <div class="penny-container" id="penny">
     <img id="pennyImage" 
@@ -106,17 +103,13 @@
     let userTriggeredCheating = false;
     let hasAuthenticated = false;
 
-    const ciphertextBase64 = "X9Guc9L9IBZ1p+66NZQPK2QQCNxuXX38LcyHIDHv1J/UBlcwC61HLzkvlP+ZnQ==";
-
     function checkPassword() {
       const input = document.getElementById("password").value;
       if (input === "M3n0lunG4") {
         hasAuthenticated = true;
 
         if (!userTriggeredCheating) {
-          const secretDiv = document.getElementById("secretLink");
-          secretDiv.textContent = ciphertextBase64;
-          secretDiv.style.display = "block";
+          document.getElementById("secretLink").style.display = "block";
           document.getElementById("penny").style.display = "flex";
           document.getElementById("speech").classList.remove("invisible");
         }
@@ -156,3 +149,5 @@
   </script>
 </body>
 </html>
+
+
