@@ -89,7 +89,7 @@
   <button onclick="checkPassword()">Accedi</button>
 
   <div id="secretLink">
-    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Batcaverna</a>
+    🔗 <a href="https://discord.gg/HnpQwNvtqP" target="_blank">Accedi alla Lollocaverna</a>
   </div>
 
   <div class="penny-container" id="penny">
@@ -114,7 +114,6 @@
     async function checkPassword() {
       const input = document.getElementById("password").value;
       const hashHex = await sha256(input);
-      // hash SHA-256 di "LollocavernaXD(tuttomaiuscolo)"
       const correctHash = "f62ae7bc5aa812b99767d08ce15372a81c0e99472a240a9a071d3ce4310d26ee";
 
       if (hashHex === correctHash) {
