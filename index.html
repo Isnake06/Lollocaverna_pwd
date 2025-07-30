@@ -73,10 +73,6 @@
       transform: rotate(-45deg);
     }
 
-    .hidden {
-      display: none !important;
-    }
-
     .invisible {
       opacity: 0 !important;
     }
@@ -85,7 +81,7 @@
 <body>
 
   <h2>Inserisci la password</h2>
-  <input type="password" id="password" placeholder="Password"/>
+  <input type="password" id="password" placeholder="Password" />
   <button onclick="checkPassword()">Accedi</button>
 
   <div id="secretLink">
@@ -93,34 +89,29 @@
   </div>
 
   <div class="penny-container" id="penny">
-    <img id="pennyImage" 
-         src="./img/alfred-normal.png" 
-         alt="Pennyworth" class="penny-img"/>
+    <img id="pennyImage" src="img/alfred-normal.png" alt="Pennyworth" class="penny-img" />
     <div class="speech-bubble" id="speech">Welcome, sir.</div>
   </div>
 
   <script>
-let userTriggeredCheating = false;
-let hasAuthenticated = false;
-let devtoolsDetected = false;
-let hasAuthenticated = false;
+    let userTriggeredCheating = false;
+    let hasAuthenticated = false;
 
-function checkDevTools() {
-  const threshold = 160;
-  const widthCheck = window.outerWidth - window.innerWidth > threshold;
-  const heightCheck = window.outerHeight - window.innerHeight > threshold;
+    function checkDevTools() {
+      const threshold = 160;
+      const widthCheck = window.outerWidth - window.innerWidth > threshold;
+      const heightCheck = window.outerHeight - window.innerHeight > threshold;
 
-  if ((widthCheck || heightCheck) && !hasAuthenticated) {
-    devtoolsDetected = true;
-    triggerAlfredDefense();
-    disableEverything();
-  }
-}
+      if ((widthCheck || heightCheck) && !hasAuthenticated) {
+        triggerAlfredDefense();
+      }
+    }
 
-setInterval(checkDevTools, 500);
+    setInterval(checkDevTools, 500);
+
     function checkPassword() {
-      const input = document.getElementById("password").value;
-      if (input === "lollocavernaXD(tuttomaiuscolo)") {
+      const input = document.getElementById("password");
+      if (input.value === "lollocavernaXD(tuttomaiuscolo)") {
         hasAuthenticated = true;
 
         if (!userTriggeredCheating) {
@@ -132,7 +123,7 @@ setInterval(checkDevTools, 500);
         alert("Password errata, signore.");
       }
     }
-    
+
     function triggerAlfredDefense() {
       if (!hasAuthenticated) {
         userTriggeredCheating = true;
@@ -140,13 +131,15 @@ setInterval(checkDevTools, 500);
         const penny = document.getElementById("penny");
         const speech = document.getElementById("speech");
         const image = document.getElementById("pennyImage");
-         input.disabled = true;
-         button.disabled = true;
-        
-         input.placeholder = "Troppo tardi, signore...";
-          document.body.innerHTML = "";
+
+        const input = document.getElementById("password");
+        const button = document.querySelector("button");
+        if (input) input.disabled = true;
+        if (button) button.disabled = true;
+
+        input.placeholder = "Troppo tardi, signore...";
         penny.style.display = "flex";
-        image.src = "./img/alfred-gun.png"; // carica questa immagine nella repo
+        image.src = "img/alfred-gun.png";
         speech.classList.add("invisible");
       }
     }
@@ -165,6 +158,6 @@ setInterval(checkDevTools, 500);
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     });
- </script>
+  </script>
 </body>
 </html>
