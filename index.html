@@ -28,46 +28,124 @@
       font-size: 18px;
       color: #0f0;
     }
+
+    .penny-container {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: none;
+      flex-direction: row;
+      align-items: flex-end;
+      z-index: 1000;
+    }
+
+    .penny-img {
+      height: 150px;
+      margin-right: 10px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .speech-bubble {
+      background: #fff;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 10px 15px;
+      max-width: 200px;
+      font-family: 'Georgia', serif;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      position: relative;
+      color: #000;
+      transition: opacity 0.3s;
+    }
+
+    .speech-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: #fff;
+      border-right-color: #fff;
+      border-bottom: 0;
+      margin-left: -5px;
+      transform: rotate(-45deg);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .invisible {
+      opacity: 0 !important;
+    }
   </style>
 </head>
 <body>
 
   <h2>Inserisci la password</h2>
   <input type="password" id="password" placeholder="Password"/>
-  <button id="btnAccedi">Accedi</button>
+  <button onclick="checkPassword()">Accedi</button>
 
   <div id="secretLink">
-    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Batcaverna</a>
+    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Lollocaverna</a>
+  </div>
+
+  <div class="penny-container" id="penny">
+    <img id="pennyImage" 
+         src="./img/alfred-normal.png" 
+         alt="Pennyworth" class="penny-img"/>
+    <div class="speech-bubble" id="speech">Welcome, sir.</div>
   </div>
 
   <script>
-    async function sha256(message) {
-      const msgBuffer = new TextEncoder().encode(message);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      return hashHex;
-    }
+    let userTriggeredCheating = false;
+    let hasAuthenticated = false;
 
-    async function checkPassword() {
-      const input = document.getElementById("password").value.trim();
-      const inputHash = await sha256(input);
-      const correctHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"; // hash di "1234"
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === "M3n0lunG4") {
+        hasAuthenticated = true;
 
-      console.log("Input:", input);
-      console.log("Hash input:", inputHash);
-
-      if (inputHash === correctHash) {
-        document.getElementById("secretLink").style.display = "block";
+        if (!userTriggeredCheating) {
+          document.getElementById("secretLink").style.display = "block";
+          document.getElementById("penny").style.display = "flex";
+          document.getElementById("speech").classList.remove("invisible");
+        }
       } else {
         alert("Password errata, signore.");
       }
     }
 
-    document.getElementById("btnAccedi").addEventListener("click", () => {
-      checkPassword();
+    function triggerAlfredDefense() {
+      if (!hasAuthenticated) {
+        userTriggeredCheating = true;
+
+        const penny = document.getElementById("penny");
+        const speech = document.getElementById("speech");
+        const image = document.getElementById("pennyImage");
+
+        penny.style.display = "flex";
+        image.src = "./img/alfred-gun.png"; // carica questa immagine nella repo
+        speech.classList.add("invisible");
+      }
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (
+        (e.ctrlKey && e.key.toLowerCase() === "u") ||
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i")
+      ) {
+        e.preventDefault();
+        triggerAlfredDefense();
+      }
+    });
+
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
     });
   </script>
-
 </body>
 </html>
