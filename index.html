@@ -89,7 +89,7 @@
   <button onclick="checkPassword()">Accedi</button>
 
   <div id="secretLink">
-    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Lollocaverna</a>
+    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Batcaverna</a>
   </div>
 
   <div class="penny-container" id="penny">
@@ -100,27 +100,12 @@
   </div>
 
   <script>
-let userTriggeredCheating = false;
-let hasAuthenticated = false;
-let devtoolsDetected = false;
-let hasAuthenticated = false;
+    let userTriggeredCheating = false;
+    let hasAuthenticated = false;
 
-function checkDevTools() {
-  const threshold = 160;
-  const widthCheck = window.outerWidth - window.innerWidth > threshold;
-  const heightCheck = window.outerHeight - window.innerHeight > threshold;
-
-  if ((widthCheck || heightCheck) && !hasAuthenticated) {
-    devtoolsDetected = true;
-    triggerAlfredDefense();
-    disableEverything();
-  }
-}
-
-setInterval(checkDevTools, 500);
     function checkPassword() {
       const input = document.getElementById("password").value;
-      if (input === "m3n0lung4") {
+      if (input === "LollocavernaXD(tuttomaiuscolo)") {
         hasAuthenticated = true;
 
         if (!userTriggeredCheating) {
@@ -132,7 +117,7 @@ setInterval(checkDevTools, 500);
         alert("Password errata, signore.");
       }
     }
-    
+
     function triggerAlfredDefense() {
       if (!hasAuthenticated) {
         userTriggeredCheating = true;
@@ -140,11 +125,7 @@ setInterval(checkDevTools, 500);
         const penny = document.getElementById("penny");
         const speech = document.getElementById("speech");
         const image = document.getElementById("pennyImage");
-         input.disabled = true;
-         button.disabled = true;
-        
-         input.placeholder = "Troppo tardi, signore...";
-          document.body.innerHTML = "";
+
         penny.style.display = "flex";
         image.src = "./img/alfred-gun.png"; // carica questa immagine nella repo
         speech.classList.add("invisible");
@@ -165,6 +146,6 @@ setInterval(checkDevTools, 500);
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     });
- </script>
+  </script>
 </body>
 </html>
