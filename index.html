@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -89,12 +89,12 @@
   <button onclick="checkPassword()">Accedi</button>
 
   <div id="secretLink">
-    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Lollocaverna</a>
+    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Batcaverna</a>
   </div>
 
   <div class="penny-container" id="penny">
     <img id="pennyImage" 
-         src="https://upload.wikimedia.org/wikipedia/en/thumb/7/70/Alfred_Pennyworth_%28Alex_Ross%29.jpg/220px-Alfred_Pennyworth_%28Alex_Ross%29.jpg" 
+         src="./img/alfred-normal.png" 
          alt="Pennyworth" class="penny-img"/>
     <div class="speech-bubble" id="speech">Welcome, sir.</div>
   </div>
@@ -105,10 +105,9 @@
 
     function checkPassword() {
       const input = document.getElementById("password").value;
-      if (input === "lollocavernaXD(tuttomaiuscolo)") {
+      if (input === "LollocavernaXD(tuttomaiuscolo)") {
         hasAuthenticated = true;
 
-        // Solo se NON ha tentato Ctrl+U
         if (!userTriggeredCheating) {
           document.getElementById("secretLink").style.display = "block";
           document.getElementById("penny").style.display = "flex";
@@ -128,7 +127,7 @@
         const image = document.getElementById("pennyImage");
 
         penny.style.display = "flex";
-        image.src = "https://i.imgur.com/U7T87Vs.png"; // Alfred armato
+        image.src = "./img/alfred-gun.png"; // carica questa immagine nella repo
         speech.classList.add("invisible");
       }
     }
