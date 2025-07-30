@@ -114,7 +114,7 @@
     async function checkPassword() {
       const input = document.getElementById("password").value;
       const hashHex = await sha256(input);
-      const correctHash = "f62ae7bc5aa812b99767d08ce15372a81c0e99472a240a9a071d3ce4310d26ee";
+      const correctHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
 
       if (hashHex === correctHash) {
         hasAuthenticated = true;
