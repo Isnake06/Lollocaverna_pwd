@@ -86,11 +86,13 @@
 
   <h2>Inserisci la password</h2>
   <input type="password" id="password" placeholder="Password"/>
-  <button onclick="checkPassword()">Accedi</button>
+  <button onclick="checkPassword()">Accedi alla lollocaverna</button>
 
-  <div id="secretLink">
-    🔗 <p>Accedi alla Lollocaverna: X9Guc9L9IBZ1p+66NZQPK2QQCNxuXX38LcyHIDHv1J/UBlcwC61HLzkvlP+ZnQ== </p>
-  </div>
+ <div id="secretLink"><br>
+  <code style="word-break: break-all; background-color: #222; color: #0f0; display: block; padding: 10px; border-radius: 6px; font-size: 14px;">
+    X9Guc9L9IBZ1p+66NZQPK2QQCNxuXX38LcyHIDHv1J/UBlcwC61HLzkvlP+ZnQ==
+  </code>
+</div>
 
   <div class="penny-container" id="penny">
     <img id="pennyImage" 
@@ -105,7 +107,7 @@
 
     function checkPassword() {
       const input = document.getElementById("password").value;
-      if (input === "Lollo") {
+      if (input === "1234") {
         hasAuthenticated = true;
 
         if (!userTriggeredCheating) {
@@ -149,5 +151,3 @@
   </script>
 </body>
 </html>
-
-
