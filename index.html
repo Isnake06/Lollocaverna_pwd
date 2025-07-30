@@ -86,13 +86,11 @@
 
   <h2>Inserisci la password</h2>
   <input type="password" id="password" placeholder="Password"/>
-  <button onclick="checkPassword()">Accedi alla lollocaverna</button>
+  <button onclick="checkPassword()">Accedi</button>
 
- <div id="secretLink"><br>
-  <code style="word-break: break-all; background-color: #222; color: #0f0; display: block; padding: 10px; border-radius: 6px; font-size: 14px;">
-    X9Guc9L9IBZ1p+66NZQPK2QQCNxuXX38LcyHIDHv1J/UBlcwC61HLzkvlP+ZnQ==
-  </code>
-</div>
+  <div id="secretLink">
+    🔗 <a href="https://esempio.com" target="_blank">Accedi alla Lollocaverna</a>
+  </div>
 
   <div class="penny-container" id="penny">
     <img id="pennyImage" 
@@ -102,12 +100,27 @@
   </div>
 
   <script>
-    let userTriggeredCheating = false;
-    let hasAuthenticated = false;
+let userTriggeredCheating = false;
+let hasAuthenticated = false;
+let devtoolsDetected = false;
+let hasAuthenticated = false;
 
+function checkDevTools() {
+  const threshold = 160;
+  const widthCheck = window.outerWidth - window.innerWidth > threshold;
+  const heightCheck = window.outerHeight - window.innerHeight > threshold;
+
+  if ((widthCheck || heightCheck) && !hasAuthenticated) {
+    devtoolsDetected = true;
+    triggerAlfredDefense();
+    disableEverything();
+  }
+}
+
+setInterval(checkDevTools, 500);
     function checkPassword() {
       const input = document.getElementById("password").value;
-      if (input === "ciao") {
+      if (input === "M3nolung4") {
         hasAuthenticated = true;
 
         if (!userTriggeredCheating) {
@@ -119,7 +132,7 @@
         alert("Password errata, signore.");
       }
     }
-
+    
     function triggerAlfredDefense() {
       if (!hasAuthenticated) {
         userTriggeredCheating = true;
@@ -127,7 +140,11 @@
         const penny = document.getElementById("penny");
         const speech = document.getElementById("speech");
         const image = document.getElementById("pennyImage");
-
+         input.disabled = true;
+         button.disabled = true;
+        
+         input.placeholder = "Troppo tardi, signore...";
+          document.body.innerHTML = "";
         penny.style.display = "flex";
         image.src = "./img/alfred-gun.png"; // carica questa immagine nella repo
         speech.classList.add("invisible");
@@ -148,6 +165,6 @@
     document.addEventListener("contextmenu", function (e) {
       e.preventDefault();
     });
-  </script>
+ </script>
 </body>
 </html>
