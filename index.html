@@ -34,7 +34,7 @@
 
   <h2>Inserisci la password</h2>
   <input type="password" id="password" placeholder="Password"/>
-  <button onclick="checkPassword()">Accedi</button>
+  <button id="btnAccedi">Accedi</button>
 
   <div id="secretLink">
     🔗 <a href="https://esempio.com" target="_blank">Accedi alla Batcaverna</a>
@@ -54,12 +54,19 @@
       const inputHash = await sha256(input);
       const correctHash = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"; // hash di "1234"
 
+      console.log("Input:", input);
+      console.log("Hash input:", inputHash);
+
       if (inputHash === correctHash) {
         document.getElementById("secretLink").style.display = "block";
       } else {
         alert("Password errata, signore.");
       }
     }
+
+    document.getElementById("btnAccedi").addEventListener("click", () => {
+      checkPassword();
+    });
   </script>
 
 </body>
