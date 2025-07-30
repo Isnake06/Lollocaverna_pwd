@@ -125,7 +125,9 @@
         const penny = document.getElementById("penny");
         const speech = document.getElementById("speech");
         const image = document.getElementById("pennyImage");
-
+         input.disabled = true;
+         button.disabled = true;
+         input.placeholder = "Troppo tardi, signore...";
         penny.style.display = "flex";
         image.src = "./img/alfred-gun.png"; // carica questa immagine nella repo
         speech.classList.add("invisible");
