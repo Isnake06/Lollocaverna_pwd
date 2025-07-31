@@ -108,10 +108,22 @@
     let userTriggeredCheating = false;
     let hasAuthenticated = false;
 
-    function checkPassword() {
-      const input = document.getElementById("password").value;
-      if (input === "LollocavernaXD(tuttomaiuscolo)") {
-        hasAuthenticated = true;
+   async function checkPassword() {
+  const input = document.getElementById("password").value;
+
+  // Hash la password inserita
+  const hash = await sha256(input);
+
+  // Password corretta (hashata con SHA-256)
+  const correctHash = "51f732cb7a7b77b8d0a2d05c71ad65f56ff46936ad89982ab0e5b8404d23b5e3"; // <-- sostituisci con il vero hash
+
+  if (hash === correctHash) {
+    hasAuthenticated = true;
+  }
+
+  // Cancella il campo subito dopo
+  document.getElementById("password").value = "";
+
 
         if (!userTriggeredCheating) {
           document.getElementById("secretLink").style.display = "block";
@@ -122,6 +134,13 @@
         alert("Password errata, signore.");
       }
     }
+
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
 
     function triggerAlfredDefense() {
       if (!hasAuthenticated) {
